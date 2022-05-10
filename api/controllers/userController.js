@@ -20,9 +20,9 @@ exports.signup=(req,res,next)=>{
                 }else{
                     const user = new userModel({
                         _id: new mongoose.Types.ObjectId(),
-                        name: req.body.name,
-                        phone: req.body.phone,
-                        email: req.body.email,
+                        name:     req.body.name,
+                        phone:    req.body.phone,
+                        email:    req.body.email,
                         password: hash
                     }); 
                     user
@@ -32,8 +32,8 @@ exports.signup=(req,res,next)=>{
                         res.status(200).json({ 
                             message: "Novo usuario" ,
                             produto_criado: {
-                                id: result._id,
-                                name: result.name,
+                                id:    result._id,
+                                name:  result.name,
                                 phone: result.phone,
                                 email: result.email,
                                 password: result.password,
