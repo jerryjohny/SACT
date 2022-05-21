@@ -1,19 +1,17 @@
 const morgan = require('morgan');
 const express = require('express');
 const app= express();
-const rota_produtos = require('./api/routs/products');
-const rota_ordens = require('./api/routs/orders');
 const rota_usuarios= require('./api/routs/Users');
-const rota_contas= require('./api/routs/accounts')
-const rota_fundos=require('./api/routs/fund')
-const rota_empreendimento = require('./api/routs/estate')
-const rota_cota =  require('./api/routs/quota')
+const rota_trabalhadores= require('./api/routs/trabalhador')
+const rota_obras= require('./api/routs/obra');
+const rota_actividades= require('./api/routs/actividade');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 //conexão com mongodb 
-mongoose.connect('mongodb+srv://jerry:'+process.env.password+'@funds.j0vmf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose.connect('mongodb+srv://jerry:'+process.env.password+'@cluster0.p1nyq.mongodb.net/sact_db?retryWrites=true&w=majority'
 );
+
 //controlador de logs
 app.use(morgan('dev'));
 //body parser
@@ -22,6 +20,7 @@ app.use(bodyParser.json());
 // Headers para prevenção de CORS errors
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Headers","Content-Type");
     res.header("Access-Controll-Allow-Headers", "Origin,X-Requested-With, Content-Type, Accept, Authorization");
     
     if(req.method === 'OPTIONS'){
@@ -31,16 +30,17 @@ app.use((req,res,next)=>{
     next();
 });
 //rotas concretas
-app.use('/products',rota_produtos);
-app.use('/orders',rota_ordens);
+app.use('/trabalhador',rota_trabalhadores);
+app.use('/actividade',rota_actividades);
 app.use('/users',rota_usuarios);
-app.use('/accounts',rota_contas);
-app.use('/funds',rota_fundos)
-app.use('/estate',rota_empreendimento)
-app.use('/quota',rota_cota)
+app.use('/obra',rota_obras);
+
+
+
+
 //rota fall-back
 app.use((req,res,next)=>{
-    const error = new Error('Not ound');
+    const error = new Error('Esta não é uma rota válida');
     error.status= 404;
     next(error);
 });
@@ -49,7 +49,7 @@ app.use((error,req,res,next)=>{
     res.json({
         error: {
             message: error.message,
-            nome: "jerry"
+            nome: "Houve algum erro nesta requisição. Jerry"
         }
     });
 })

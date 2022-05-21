@@ -116,7 +116,7 @@ exports.get_all_users=(req,res,next)=>{
         }
        console.log("da base de dados",doc) ;
        //res.status(200).json(resposta.usr);
-       res.status(200).json(resposta);
+       res.status(200).json(resposta.usr);
        
     })
     .catch(err=>{ 
