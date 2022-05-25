@@ -5,6 +5,7 @@ const rota_usuarios= require('./api/routs/Users');
 const rota_trabalhadores= require('./api/routs/trabalhador')
 const rota_obras= require('./api/routs/obra');
 const rota_actividades= require('./api/routs/actividade');
+const rota_schedules= require('./api/routs/schedule');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -32,6 +33,7 @@ app.use((req,res,next)=>{
 //rotas concretas
 app.use('/trabalhador',rota_trabalhadores);
 app.use('/actividade',rota_actividades);
+app.use('/schedule',rota_schedules);
 app.use('/users',rota_usuarios);
 app.use('/obra',rota_obras);
 
