@@ -119,6 +119,11 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
+            <a href="alocacoes.html" class="">
+              <i class="bi bi-circle"></i><span>Alocacoes</span>
+            </a>
+          </li>
+          <li>
             <a href="Admin.html" class="">
               <i class="bi bi-circle"></i><span>Trabalhador</span>
             </a>
@@ -274,23 +279,43 @@
 
               <!-- Registo de actividade -->
               <form class="row g-3">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <label for="" class="form-label"> Designacao</label>
                   <input type="text" class="form-control" placeholder="Designacao da actividade"
                     id="designacaoActividade">
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
+                  <label for="" class="form-label">Selecione Obra</label>
+                  <select id="" class="form-select">
+                    <option selected>Obra 1</option>
+                    <option>Obra 2</option>
+                    <option>Obra 3</option>
+                  </select>
+                </div>
+                <div class="col-12">
                   <label for="" class="form-label">Detalhes</label>
                   <input type="text" class="form-control"  placeholder="Detalhes da actividade" id="detalhesActividade">
                 </div>
                 <div class="col-3">
-                  <label for="" class="form-label">Inicio</label>
+                  <label for="" class="form-label">Data do Inicio</label>
+                  <div class="inputState">
+                    <input type="date" class="form-control">
+                  </div>
+                </div>
+                <div class="col-3">
+                  <label for="" class="form-label">Hora </label>
                   <div class="inputState">
                     <input type="time" class="form-control" id="horaInicio">
                   </div>
                 </div>
                 <div class="col-3">
-                  <label for="" class="form-label">Fim</label>
+                  <label for="" class="form-label">Data do termino</label>
+                  <div class="inputState">
+                    <input type="date" class="form-control" id="">
+                  </div>
+                </div>
+                <div class="col-3">
+                  <label for="" class="form-label">Hora</label>
                   <div class="inputState">
                     <input type="time" class="form-control" id="horaFim">
                   </div>
