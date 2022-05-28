@@ -29,7 +29,14 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
+
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+   
+     
 </head>
 
 <body>
@@ -154,7 +161,7 @@
 
                 <div class="col-md-6">
                   <label for="" class="form-label"> Bilhete de Identidade</label>
-                  <input type="text" class="form-control" placeholder="Nome completo" id="">
+                  <input type="text" class="form-control" placeholder="Bilhete de Identidadea" id="inputBi">
                 </div>
                 <div class="col-md-6">
                   <label for="inputContacto" class="form-label">Contacto</label>
@@ -162,19 +169,20 @@
                 </div>
                 <div class="col-6">
                   <label for="inputMorada" class="form-label">Morada</label>
-                  <input type="text" class="form-control" id="inputAddres5s" placeholder="Av. Mocambique, Casa...">
+                  <input type="text" class="form-control" id="inputAddress" placeholder="Av. Mocambique, Casa...">
                 </div>
                 <div class="col-md-6">
                   <label for="" class="form-label">Especialidade</label>
-                  <select id="" class="form-select">
+                  <select id="inputEspecialidade" class="form-select">
                     <option selected>Eletrecista</option>
                     <option>Canalizador</option>
+                    <option>Pedreiro</option>
                     <option>...</option>
                   </select>
                 </div>
                 <div class="col-md-6">
                   <label for="" class="form-label">Tipo de trabalhador</label>
-                  <select id="" class="form-select">
+                  <select id="inputTipoTrabalhador" class="form-select">
                     <option selected>Contratado</option>
                     <option>Consultor</option>
                     <option>...</option>
@@ -182,7 +190,7 @@
                 </div>
                 <div class="col-md-6">
                   <label for="" class="form-label">Experiencia</label>
-                  <select id="" class="form-select">
+                  <select id="inputExperiencia" class="form-select">
                     <option selected>Junior</option>
                     <option>Pleno</option>
                     <option>Senior</option>
@@ -195,8 +203,8 @@
                   </div>
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-primary">Registar</button>
-                  <button type="reset" class="btn btn-secondary">Limpar todos campos</button>
+                  <button  class="btn btn-primary" id="btRegistarTrabalhador" >Registar</button>
+                  <button type="reset" class="btn btn-secondary" id="limpar">Limpar todos campos</button>
                 </div>
               </form><!-- End Multi Columns Form -->
 
@@ -214,38 +222,38 @@
             <div class="card-body">
               <h5 class="card-title">Registar Obra</h5>
 
-              <!-- Registo do trabalhador -->
+              <!-- Registo do obra -->
               <form class="row g-3">
                 <div class="col-md-6">
                   <label for="" class="form-label"> Designacao</label>
-                  <input type="text" class="form-control" placeholder="Designacao da obra" id="">
+                  <input type="text" class="form-control" placeholder="Designacao da obra" id="designacaoObra">
                 </div>
                 <div class="col-md-6">
                   <label for="" class="form-label">Zelador</label>
-                  <input type="text" class="form-control" placeholder="Nome do zelador" id="">
+                  <input type="text" class="form-control" placeholder="Nome do zelador" id="zeladorObra">
                 </div>
                 <div class="col-md-6">
                   <label for="" class="form-label">Localizacao</label>
-                  <input type="text" class="form-control" placeholder="Localizacao da obra" id="">
+                  <input type="text" class="form-control" placeholder="Localizacao da obra" id="localizacaoObra">
                 </div>
                 <div class="col-6">
                   <label for="" class="form-label">Detalhes</label>
-                  <input type="text" class="form-control" id="" placeholder="Detalhes da obra">
+                  <input type="text" class="form-control"  placeholder="Detalhes da obra" id="detalhesObra">
                 </div>
                 <div class="col-6">
                   <label for="" class="form-label">Data do Inicio</label>
                   <div class="inputState">
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" id="inicioObra">
                   </div>
                 </div>
                 <div class="col-6">
                   <label for="" class="form-label">Data do termino</label>
                   <div class="inputState">
-                    <input type="date" class="form-control" id="">
+                    <input type="date" class="form-control" id="terminoObra">
                   </div>
                 </div>
                 <div>
-                  <button type="submit" class="btn btn-primary">Registar</button>
+                  <button type="submit" class="btn btn-primary" id="btRegistarObra">Registar</button>
                   <button type="reset" class="btn btn-secondary">Limpar todos campos</button>
                 </div>
               </form><!-- End Multi Columns Form -->
@@ -264,32 +272,32 @@
             <div class="card-body">
               <h5 class="card-title">Registar Actividade</h5>
 
-              <!-- Registo do trabalhador -->
+              <!-- Registo de actividade -->
               <form class="row g-3">
                 <div class="col-md-12">
                   <label for="" class="form-label"> Designacao</label>
                   <input type="text" class="form-control" placeholder="Designacao da actividade"
-                    id="">
+                    id="designacaoActividade">
                 </div>
                 <div class="col-6">
                   <label for="" class="form-label">Detalhes</label>
-                  <input type="text" class="form-control" id="" placeholder="Detalhes da actividade">
+                  <input type="text" class="form-control"  placeholder="Detalhes da actividade" id="detalhesActividade">
                 </div>
                 <div class="col-3">
                   <label for="" class="form-label">Inicio</label>
                   <div class="inputState">
-                    <input type="time" class="form-control" id="">
+                    <input type="time" class="form-control" id="horaInicio">
                   </div>
                 </div>
                 <div class="col-3">
                   <label for="" class="form-label">Fim</label>
                   <div class="inputState">
-                    <input type="time" class="form-control" id="">
+                    <input type="time" class="form-control" id="horaFim">
                   </div>
                 </div>
 
                 <div>
-                  <button type="submit" class="btn btn-primary">Registar</button>
+                  <button type="submit" class="btn btn-primary" id="btRegistarActividade">Registar</button>
                   <button type="reset" class="btn btn-secondary">Limpar todos campos</button>
                 </div>
               </form><!-- End Multi Columns Form -->
@@ -318,9 +326,11 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+ 
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="connection.js"></script>
 
 </body>
 

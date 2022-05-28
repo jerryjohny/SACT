@@ -6,6 +6,8 @@ const actividadeModel=mongoose.Schema({
     detalhes:      {type: String},
     inicio:        {type: String, required: true},
     fim:           {type: String, required: true},
+    horaInicio:    {type: String, required: true},
+    horaFim:       {type: String, required: true},
     obraAssociada: {type: mongoose.Schema.Types.ObjectId, ref: 'obras',required: true},
 })
 

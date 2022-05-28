@@ -28,7 +28,7 @@ exports.registarTrabalhador=(req,res,next)=>{
                                         console.log(result);
                                         res.status(200).json({ 
                                             message: "Novo trabalhador registado" ,
-                                            produto_criado: {
+                                            trabalhador: {
                                                 id:    result._id,
                                                 nome:  result.nome,
                                                 telefone: result.telefone,

@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 exports.registarActividade=(req,res,next)=>{
     const actividade = new actividadeModel({
         _id: new mongoose.Types.ObjectId(),
-        designacao:  req.body.designacao,
-        detalhes:    req.body.detalhes,
-        inicio:      req.body.inicio || new Date(),
-        fim:         req.body.fim,
-        obraAssociada:     req.body.obraAssociada
+        designacao:    req.body.designacao,
+        detalhes:      req.body.detalhes,
+        inicio:        req.body.inicio || new Date(),
+        fim:           req.body.fim,
+        horaInicio:    req.body.horaInicio,
+        horaFim:       req.body.horaFim,
+        obraAssociada: req.body.obraAssociada
     });
     actividade
     .save()
@@ -22,6 +24,8 @@ exports.registarActividade=(req,res,next)=>{
                 detalhes:      result.detalhes,
                 inicio:        result.inicio,
                 fim:           result.fim,
+                horaInicio:    result.horaInicio,
+                horaFim:       result.horaFim,
                 obraAssociada: result.obraAssociada,
                 GET_URL: 'http://localhost:3000/actividade/'+result._id
             }

@@ -8,7 +8,7 @@ exports.registarObra=(req,res,next)=>{
         detalhes:    req.body.detalhes,
         localizacao: req.body.localizacao,
         zelador:     req.body.zelador,
-        inicio:      new Date(),
+        inicio:      req.body.inicio,
         fim:         req.body.fim
     });
     obra
