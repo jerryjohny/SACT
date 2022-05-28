@@ -40,8 +40,8 @@ exports.registarActividade=(req,res,next)=>{
 }
 exports.listarActividades=(req,res,next)=>{
     actividadeModel.find()
-    .select('_id designacao detalhes obraAssociada inicio fim')
-    .populate("obraAssociada","designacao")
+    .select('_id designacao detalhes obraAssociada inicio fim horaInicio')
+    .populate("obraAssociada horaInicio","designacao horaInicio")
     .exec()
     .then(doc=>{
         const resposta={
@@ -53,6 +53,8 @@ exports.listarActividades=(req,res,next)=>{
                     inicio:        doc.inicio,
                     fim:           doc.fim,
                     _id:           doc._id,
+                    horaInicio:    doc.horaInicio,
+                    horaFim:       doc.horaFim,
                     obraAssociada: doc.obraAssociada.designacao,
                     SPECIFIC_GET_URL: 'http://localhost:3000/actividade/'+doc._id
                 }

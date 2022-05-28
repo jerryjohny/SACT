@@ -4,6 +4,7 @@ const trabalhadorController= require('../controllers/trabalhadorController')
 
 router.post('/registar',trabalhadorController.registarTrabalhador);
 router.get('/listar',trabalhadorController.listarTrabalhadores);
+router.get('/listar/canalizador',trabalhadorController.listarTrabalhadoresCanalizadores);
 router.delete('/eliminar/:BI',trabalhadorController.eliminarTrabalhador);
 
 

@@ -8,7 +8,10 @@ exports.registarSchedule=(req,res,next)=>{
         obra:        req.body.obra,//uma actividade está associada a uma obra
         trabalhador: req.body.trabalhador,
         inicio:      req.body.actividade,//o inicio do schedule é o inicio da actividade
-        fim:         req.body.actividade//fim do schedule é o fim da actividade também
+        fim:         req.body.actividade,//fim do schedule é o fim da actividade também
+        horaInicio:  req.body.horaInicio,
+        horaFim:     req.body.horaInicio
+
     });
     schedule
     .save()

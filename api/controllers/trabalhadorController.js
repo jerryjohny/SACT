@@ -77,6 +77,34 @@ exports.listarTrabalhadores=(req,res,next)=>{
         res.status(500).json({error:err});
     });
 }
+exports.listarTrabalhadoresCanalizadores=(req,res,next)=>{
+    trabalhadorModel.find({especialidade:"Canalizador"})
+    .select('nome telefone BI especialidade ')
+    .exec()
+    .then(doc=>{
+        const resposta={
+            count: doc.length,
+            usr: doc.map(doc=>{
+                return{
+                    id: doc._id,
+                    nome: doc.nome,
+                    telefone: doc.telefone,
+                    BI: doc.BI,
+                    especialidade: doc.especialidade,
+                    SPECIFIC_GET_URL: 'http://localhost:3000/trabalhador/'+doc._id
+                }
+            })
+        }
+       console.log("da base de dados",doc) ;
+       //res.status(200).json(resposta.usr);
+       res.status(200).json(resposta.usr);
+       
+    })
+    .catch(err=>{ 
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+}
 
 exports.eliminarTrabalhador=(req,res,next)=>{
     

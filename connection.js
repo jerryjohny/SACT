@@ -27,6 +27,26 @@ function regTrabalhador(){
     
 }
 
+function carregarTotalTrabalhadores(){ 
+    var total= document.getElementById("totalTrabalhadores").value
+   
+    axios.get("http://localhost:3000/trabalhador/listar")
+    .then(res=>{
+        var a = res.data
+       // alert(a.length)
+       $("#totalTrabalhadores").text(a.length)
+    })
+    
+}
+function carregarTotalCanalizadores(){ 
+    axios.get("http://localhost:3000/trabalhador/listar/canalizador")
+    .then(res=>{
+        var a = res.data
+       // alert(a.length)
+       $("#totalTrabalhadores").text(a.length)
+    })
+    
+}
 function regObra(){
     var designacaoObra= document.getElementById("designacaoObra").value
     var zeladorObra= document.getElementById("zeladorObra").value
@@ -44,6 +64,7 @@ function regObra(){
         fim: terminoObra
     })
 }
+
 
 function regActividade(){
     var designacaoActividade= document.getElementById("designacaoActividade").value
@@ -68,6 +89,8 @@ function regActividade(){
 }
 
 
+
+
 $("#btRegistarTrabalhador").on("click",function(){
  
   
@@ -89,3 +112,18 @@ $("#btRegistarActividade").on("click",function(){
     alert("Actividade criada com sucesso")
   
 })
+
+$("#filtroCanalizador").on("click",function(){
+
+  carregarTotalCanalizadores()
+})
+
+document.ready(carregarTotalTrabalhadores());
+
+/*
+$("body").on("click",function(){
+ 
+  carregarTotalTrabalhadores()
+  
+})
+*/

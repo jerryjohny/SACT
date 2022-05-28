@@ -61,6 +61,7 @@ exports.listarObras=(req,res,next)=>{
         res.status(500).json({error:err});
     });
 }
+
 exports.editarObra=(req,res,next)=>{
     const id = req.params.detId; 
     const updateOps={};

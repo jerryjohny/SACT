@@ -7,6 +7,8 @@ const scheduleModel=mongoose.Schema({
     trabalhador: {type: mongoose.Schema.Types.ObjectId, ref: 'trabalhadores',required: true},
     inicio:      {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
     fim:         {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
+    horaInicio:  {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
+    horaFim:     {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
 })
 
 module.exports= mongoose.model('schedules',scheduleModel);
