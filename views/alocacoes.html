@@ -29,6 +29,10 @@
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+   
   </head>
 
   <body>
@@ -154,58 +158,51 @@
         <div class="row">
           <div class="col-lg-12">
 
-            <div class="card">
+            <div class="card" id="areaAlocacão" >
               <div class="card-body">
                 <h5 class="card-title">Alocar Trabalhador ao actividade</h5>
 
-                <!-- Registo do trabalhador -->
+                <!-- Alocações -->
                 <form class="row g-3">
                   <div class="col-md-12">
                     <label for="" class="form-label">Nome do trabalhador</label>
-                    <select id="" class="form-select">
-                      <option selected>Trabalhador A</option>
-                      <option>Trabalhador B</option>
-                      <option>Trabalhador C</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="" class="form-label">Obra</label>
-                    <select id="" class="form-select">
-                      <option selected>Obra 1</option>
-                      <option>Obra 2</option>
-                      <option>Obra 3</option>
+                    <select id="listaTrabalhaores" class="form-select" aria-placeholder="António Arlindo Banze ">
+                     
                     </select>
                   </div>
                   <div class="col-md-6">
                     <label for="" class="form-label">Actividade</label>
-                    <select id="" class="form-select">
-                      <option selected>Montar Andaimes</option>
-                      <option>Fundacao</option>
-                      <option>Maquinar</option>
+                    <select id="listaActividades" class="form-select">
                     </select>
                   </div>
+                  <div class="col-md-6">
+                    <label for="" class="form-label">Obra</label>
+                    <input type="text" id="obraAssociada" class="form-control" disabled="disabled">
+                  
+                  </div>
+                 
                   <div class="col-3">
                     <label for="" class="form-label">Data do Inicio</label>
                     <div class="inputState">
-                      <input type="date" class="form-control">
+                      <input type="text" class="form-control" disabled="disabled" id="dataInicioAfetacao" >
                     </div>
                   </div>
                   <div class="col-3">
                     <label for="" class="form-label">Hora </label>
                     <div class="inputState">
-                      <input type="time" class="form-control" id="">
+                      <input type="text" class="form-control" id="horaInicioAfetacao" disabled="disabled">
                     </div>
                   </div>
                   <div class="col-3">
                     <label for="" class="form-label">Data do termino</label>
                     <div class="inputState">
-                      <input type="date" class="form-control" id="">
+                      <input type="text" class="form-control" id="dataFimAfetacao" disabled="disabled">
                     </div>
                   </div>
                   <div class="col-3">
                     <label for="" class="form-label">Hora</label>
                     <div class="inputState">
-                      <input type="time" class="form-control" id="">
+                      <input type="text" class="form-control" id="horaFimAfetacao" disabled="disabled">
                     </div>
                   </div>
                 </form><!-- End Multi Columns Form -->
@@ -239,7 +236,7 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-
+    <script src="connection.js"></script>
   </body>
 
 </html>

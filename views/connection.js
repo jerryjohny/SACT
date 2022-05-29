@@ -36,6 +36,70 @@ function carregarTotalTrabalhadores(){
     })
     
 }
+function carregarTotalTrabalhadoresParaAfetacao(){ 
+
+    axios.get("http://localhost:3000/trabalhador/listar")
+    .then(res=>{
+        var a = res.data
+        var tupla;
+
+        a.forEach(element => {
+             tupla= `<option>${element.nome}</option>`
+            $("#listaTrabalhaores").append(tupla)
+        });
+      
+    })
+    
+}
+
+function carregarActividadesParaAfetacao(){ 
+
+    axios.get("http://localhost:3000/actividade/listar")
+    .then(res=>{
+        var a = res.data
+        var tupla;
+        
+        a.forEach(element => {
+             tupla= `<option>${element.designacao}</option>`
+            $("#listaActividades").append(tupla)
+        });
+      
+    })
+    
+}
+function carregarDetalhesDaActividadeParaAlocacao(){ 
+
+    axios.get("http://localhost:3000/actividade/listar")
+    .then(res=>{
+        var contador=-1;
+        var a = res.data
+        var listaActividades =        document.getElementById("listaActividades")
+        var conteudoLista =          listaActividades.options[listaActividades.selectedIndex].index;
+       
+
+
+        for (let contador = 0; contador < a.length; contador++) {
+            
+            
+        }
+        a.forEach(element => {
+            contador++
+            if (contador==conteudoLista) {
+                $("#obraAssociada").val(a[contador].obraAssociada) 
+                $("#dataInicioAfetacao").val(a[contador].inicio)
+                $("#horaInicioAfetacao").val(a[contador].horaInicio)
+                $("#dataFimAfetacao").val(a[contador].fim)
+                $("#horaFimAfetacao").val(a[contador].horaFim)
+
+                
+            }
+           
+        });
+        //alert(a[contador].obraAssociada)
+      
+    })
+    
+}
 function carregarTotalCanalizadores(){ 
     axios.get("http://localhost:3000/trabalhador/listar/canalizador")
     .then(res=>{
@@ -62,8 +126,6 @@ function regObra(){
         fim: terminoObra
     })
 }
-
-
 function regActividade(){
     var designacaoActividade =  document.getElementById("designacaoActividade").value
     var obraActividade =        document.getElementById("obraActividade")
@@ -84,6 +146,7 @@ function regActividade(){
         obraAssociada: conteudoObra
 
     })
+   
   
 }
 
@@ -118,6 +181,21 @@ $("#filtroCanalizador").on("click",function(){
 
   carregarTotalCanalizadores()
 })
+$("#areaAlocacão").mouseover(function(){
+
+    carregarTotalTrabalhadoresParaAfetacao()
+    
+  })
+  $("#listaTrabalhaores").click(function(){
+    $("#listaActividades").html("")
+    carregarActividadesParaAfetacao()
+  })
+  $("#listaActividades").mouseout(function(){// O select de actividades perde o foco (que significa que ja foi seleccionada a actividade), carrega-se os detalhes da actividade
+    
+    carregarDetalhesDaActividadeParaAlocacao()
+  })
+
+  
 
 document.ready(carregarTotalTrabalhadores());
 

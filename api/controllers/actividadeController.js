@@ -40,7 +40,7 @@ exports.registarActividade=(req,res,next)=>{
 }
 exports.listarActividades=(req,res,next)=>{
     actividadeModel.find()
-    .select('_id designacao detalhes obraAssociada inicio fim horaInicio')
+    .select('_id designacao detalhes obraAssociada inicio fim horaInicio horaFim')
     .populate("obraAssociada horaInicio","designacao horaInicio")
     .exec()
     .then(doc=>{
