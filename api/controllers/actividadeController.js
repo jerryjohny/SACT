@@ -7,7 +7,7 @@ exports.registarActividade=(req,res,next)=>{
         _id: new mongoose.Types.ObjectId(),
         designacao:    req.body.designacao,
         detalhes:      req.body.detalhes,
-        inicio:        req.body.inicio || new Date(),
+        inicio:        req.body.inicio,
         fim:           req.body.fim,
         horaInicio:    req.body.horaInicio,
         horaFim:       req.body.horaFim,

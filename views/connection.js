@@ -1,16 +1,17 @@
 
 
 function regTrabalhador(){
-    var nomeTrabalhador= document.getElementById("inputNome").value
-    var bi= document.getElementById("inputBi").value
-    var contacto= document.getElementById("inputContacto").value
-    var morada= document.getElementById("inputAddress").value
-    var especialidade= document.getElementById("inputEspecialidade")
+
+    var nomeTrabalhador=        document.getElementById("inputNome").value
+    var bi=                     document.getElementById("inputBi").value
+    var contacto=               document.getElementById("inputContacto").value
+    var morada=                 document.getElementById("inputAddress").value
+    var especialidade=          document.getElementById("inputEspecialidade")
     var conteudoEspecialidade = especialidade.options[especialidade.selectedIndex].value;
-    var tipoTrabalhador= document.getElementById("inputTipoTrabalhador")
-    var conteudoTipoTrabalhador = tipoTrabalhador.options[tipoTrabalhador.selectedIndex].value;
-    var experiencia= document.getElementById("inputExperiencia")
-    var conteudoExperiencia = experiencia.options[experiencia.selectedIndex].value;
+    var tipoTrabalhador=        document.getElementById("inputTipoTrabalhador")
+    var conteudoTipoTrabalhador=tipoTrabalhador.options[tipoTrabalhador.selectedIndex].value;
+    var experiencia=            document.getElementById("inputExperiencia")
+    var conteudoExperiencia =   experiencia.options[experiencia.selectedIndex].value;
     var cv= document.getElementById("formFile").value
     
     
@@ -26,14 +27,11 @@ function regTrabalhador(){
     })
     
 }
-
 function carregarTotalTrabalhadores(){ 
-    var total= document.getElementById("totalTrabalhadores").value
-   
+
     axios.get("http://localhost:3000/trabalhador/listar")
     .then(res=>{
         var a = res.data
-       // alert(a.length)
        $("#totalTrabalhadores").text(a.length)
     })
     
@@ -67,22 +65,23 @@ function regObra(){
 
 
 function regActividade(){
-    var designacaoActividade= document.getElementById("designacaoActividade").value
-//  var obraActividade= document.getElementById("obraActividade").value
-    var detalhesActividade= document.getElementById("detalhesActividade").value
- // var dataInicio= document.getElementById("dataInicio").value
- // var dataFim= document.getElementById("dataFim").value
-    var horaInicio= document.getElementById("horaInicio").value
-    var horaFim= document.getElementById("horaFim").value
+    var designacaoActividade =  document.getElementById("designacaoActividade").value
+    var obraActividade =        document.getElementById("obraActividade")
+    var conteudoObra =          obraActividade.options[obraActividade.selectedIndex].value;
+    var detalhesActividade =    document.getElementById("detalhesActividade").value
+    var dataInicio =            document.getElementById("dataInicio").value
+    var dataFim =               document.getElementById("dataFim").value
+    var horaInicio =            document.getElementById("horaInicio").value
+    var horaFim =               document.getElementById("horaFim").value
   
     axios.post("http://localhost:3000/actividade/registar/",  {
         designacao: designacaoActividade,
-        detalhes:  detalhesActividade,
-        inicio: "2022-5-29",
-        fim: "2022-6-2",
+        detalhes:   detalhesActividade,
+        inicio:     dataInicio,
+        fim:        dataFim,
         horaInicio: horaInicio,
-        horaFim: horaFim,
-        obraAssociada: "6292000835b80dd8a9c0e165"
+        horaFim:    horaFim,
+        obraAssociada: conteudoObra
 
     })
   
@@ -107,10 +106,12 @@ $("#btRegistarObra").on("click",function(){
 })
 $("#btRegistarActividade").on("click",function(){
  
-  
+    var obraActividade =        document.getElementById("obraActividade")
+    var conteudoObra =          obraActividade.options[obraActividade.selectedIndex].value;
+    
     regActividade();
     alert("Actividade criada com sucesso")
-  
+    alert(conteudoObra)
 })
 
 $("#filtroCanalizador").on("click",function(){
