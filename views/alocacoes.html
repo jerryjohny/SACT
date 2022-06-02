@@ -160,14 +160,32 @@
 
             <div class="card" id="areaAlocacão" >
               <div class="card-body">
-                <h5 class="card-title">Alocar Trabalhador ao actividade</h5>
+                <h5 class="card-title">Alocar Trabalhador a actividade</h5>
 
                 <!-- Alocações -->
                 <form class="row g-3">
                   <div class="col-md-12">
                     <label for="" class="form-label">Nome do trabalhador</label>
-                    <select id="listaTrabalhaores" class="form-select" aria-placeholder="António Arlindo Banze ">
-                     
+                    <select id="" class="form-select">
+                      <option selected>António Arlindo Banze </option>
+                      <option>Jose Jaime Matsimbe</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" class="form-label">Especialidade</label>
+                    <select id="listaEspecialidade" class="form-select">
+                      <option selected>Eletrecista</option>
+                      <option>Canalizador</option>
+                      <option>Pedreiro</option>
+                      <option>Informatico</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="" class="form-label">Experiencia</label>
+                    <select id="listaExperiencia" class="form-select">
+                      <option selected>Junior</option>
+                      <option>Pleno</option>
+                      <option>Senior</option>
                     </select>
                   </div>
                   <div class="col-md-6">
@@ -205,6 +223,11 @@
                       <input type="text" class="form-control" id="horaFimAfetacao" disabled="disabled">
                     </div>
                   </div>
+                  <div>
+                    <button type="submit" class="btn btn-primary" id="">Alocar</button>
+                    <button type="reset" class="btn btn-secondary">Limpar todos campos</button>
+                  </div>
+  
                 </form><!-- End Multi Columns Form -->
 
               </div>
