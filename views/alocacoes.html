@@ -164,29 +164,24 @@
 
                 <!-- Alocações -->
                 <form class="row g-3">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <label for="" class="form-label">Nome do trabalhador</label>
                     <select id="" class="form-select">
                       <option selected>António Arlindo Banze </option>
                       <option>Jose Jaime Matsimbe</option>
                     </select>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-3">
                     <label for="" class="form-label">Especialidade</label>
-                    <select id="listaEspecialidade" class="form-select">
-                      <option selected>Eletrecista</option>
-                      <option>Canalizador</option>
-                      <option>Pedreiro</option>
-                      <option>Informatico</option>
-                    </select>
+                    <div class="inputState">
+                      <input type="text" class="form-control" id="listaEspecialidade" disabled="disabled">
+                    </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-3">
                     <label for="" class="form-label">Experiencia</label>
-                    <select id="listaExperiencia" class="form-select">
-                      <option selected>Junior</option>
-                      <option>Pleno</option>
-                      <option>Senior</option>
-                    </select>
+                    <div class="inputState">
+                      <input type="text" class="form-control" id="listaExperiencia" disabled="disabled">
+                    </div>
                   </div>
                   <div class="col-md-6">
                     <label for="" class="form-label">Actividade</label>
@@ -196,7 +191,6 @@
                   <div class="col-md-6">
                     <label for="" class="form-label">Obra</label>
                     <input type="text" id="obraAssociada" class="form-control" disabled="disabled">
-                  
                   </div>
                  
                   <div class="col-3">
@@ -229,6 +223,27 @@
                   </div>
   
                 </form><!-- End Multi Columns Form -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="card" id="areaAlocacão" >
+              <div class="card-body">
+                <h5 class="card-title ">Trabalhadores alocados a actividades </h5>
+                <div>
+                  <h6>Actividade: <span></span></h6>
+                  <h6>Trabalhadores alocados: <span></span></h6>
+                  <h6 class="bi calendar-week">Data inicio: <span></span></h6>
+                  <h6>Data fim: <span></span></h6>
+                </div>
 
               </div>
             </div>
