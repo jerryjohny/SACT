@@ -1,5 +1,5 @@
 
-
+var obras= new Array;
 function regTrabalhador(){
 
     var nomeTrabalhador=        document.getElementById("inputNome").value
@@ -36,6 +36,22 @@ function carregarTotalTrabalhadores(){
     })
     
 }
+function  carregarObrasParaRegistoDeActividade(){ 
+    
+    axios.get("http://localhost:3000/obra/listar")
+    .then(res=>{
+            contador=-1
+            var a = res.data
+            var tupla;
+            a.forEach(element => {
+                contador++;
+                obras[contador]=element._id
+                 tupla= `<option>${element.designacao}</option>`
+                $("#obraActividade").append(tupla)
+            });
+            
+    })
+}
 function carregarTotalTrabalhadoresParaAfetacao(){ 
 
     axios.get("http://localhost:3000/trabalhador/listar")
@@ -51,7 +67,6 @@ function carregarTotalTrabalhadoresParaAfetacao(){
     })
     
 }
-
 function carregarActividadesParaAfetacao(){ 
 
     axios.get("http://localhost:3000/actividade/listar")
@@ -90,10 +105,7 @@ function carregarDetalhesDaActividadeParaAlocacao(){
                 $("#horaInicioAfetacao").val(a[contador].horaInicio)
                 $("#dataFimAfetacao").val(a[contador].fim)
                 $("#horaFimAfetacao").val(a[contador].horaFim)
-
-                
             }
-           
         });
         //alert(a[contador].obraAssociada)
       
@@ -127,15 +139,27 @@ function regObra(){
     })
 }
 function regActividade(){
+   // var todasObras=carregarObrasParaRegistoDeActividade();
     var designacaoActividade =  document.getElementById("designacaoActividade").value
     var obraActividade =        document.getElementById("obraActividade")
-    var conteudoObra =          obraActividade.options[obraActividade.selectedIndex].value;
+    var conteudoObra =          obraActividade.options[obraActividade.selectedIndex].index;
     var detalhesActividade =    document.getElementById("detalhesActividade").value
     var dataInicio =            document.getElementById("dataInicio").value
     var dataFim =               document.getElementById("dataFim").value
     var horaInicio =            document.getElementById("horaInicio").value
     var horaFim =               document.getElementById("horaFim").value
-  
+    var codigoObra;
+    var contador=-1;
+   
+    obras.forEach(element => {
+        contador++
+        if (contador==conteudoObra) {
+            codigoObra=obras[contador]
+        }
+            
+    });
+   
+    
     axios.post("http://localhost:3000/actividade/registar/",  {
         designacao: designacaoActividade,
         detalhes:   detalhesActividade,
@@ -143,10 +167,12 @@ function regActividade(){
         fim:        dataFim,
         horaInicio: horaInicio,
         horaFim:    horaFim,
-        obraAssociada: conteudoObra
+        obraAssociada: codigoObra
 
     })
    
+
+    
   
 }
 
@@ -154,29 +180,19 @@ function regActividade(){
 
 
 $("#btRegistarTrabalhador").on("click",function(){
- 
-  
+
   regTrabalhador();
   alert("sucesso")
-
 })
 $("#btRegistarObra").on("click",function(){
- 
-  
     regObra();
     alert("sucesso")
-  
 })
 $("#btRegistarActividade").on("click",function(){
- 
-    var obraActividade =        document.getElementById("obraActividade")
-    var conteudoObra =          obraActividade.options[obraActividade.selectedIndex].value;
     
     regActividade();
     alert("Actividade criada com sucesso")
-    alert(conteudoObra)
 })
-
 $("#filtroCanalizador").on("click",function(){
 
   carregarTotalCanalizadores()
@@ -184,25 +200,21 @@ $("#filtroCanalizador").on("click",function(){
 $("#areaAlocacão").mouseover(function(){
 
     carregarTotalTrabalhadoresParaAfetacao()
-    
-  })
+
+ })
   $("#listaTrabalhaores").click(function(){
     $("#listaActividades").html("")
-    carregarActividadesParaAfetacao()
-  })
-  $("#listaActividades").mouseout(function(){// O select de actividades perde o foco (que significa que ja foi seleccionada a actividade), carrega-se os detalhes da actividade
+   // carregarActividadesParaAfetacao()
+})
+$("#listaActividades").mouseout(function(){// O select de actividades perde o foco (que significa que ja foi seleccionada a actividade), carrega-se os detalhes da actividade
     
     carregarDetalhesDaActividadeParaAlocacao()
-  })
-
-  
-
-document.ready(carregarTotalTrabalhadores());
-
-/*
-$("body").on("click",function(){
- 
-  carregarTotalTrabalhadores()
-  
 })
-*/
+
+  
+
+$(function(){
+    carregarTotalTrabalhadores();
+    carregarObrasParaRegistoDeActividade();
+    carregarActividadesParaAfetacao();
+});

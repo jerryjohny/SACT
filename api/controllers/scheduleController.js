@@ -1,5 +1,6 @@
 const scheduleModel= require('../models/scheduleModel');
 const mongoose = require('mongoose');
+const client = require('twilio')("ACfda59ab84a419798bd2be8871198d2f9",'28dc57400b1acead257de6042185fabb')
 
 exports.registarSchedule=(req,res,next)=>{
     const schedule = new scheduleModel({
@@ -39,14 +40,14 @@ exports.registarSchedule=(req,res,next)=>{
 exports.listarSchedules=(req,res,next)=>{
     scheduleModel.find()
     .select('_id actividade obra trabalhador inicio fim')
-    .populate("actividade obra trabalhador inicio fim","designacao designacao nome inicio fim ")
+    .populate("actividade obra trabalhador inicio fim"," designacao nome inicio fim ")
     .exec()
     .then(doc=>{
         const resposta={
             count: doc.length,
             schedule: doc.map(doc=>{
                 return{
-                    actividade:  doc.actividade.designacao,
+                    actividade:  doc.designacao,
                     obra:        doc.obra.designacao,
                     trabalhador: doc.trabalhador.nome,
                     inicio:      doc.inicio.inicio,
@@ -104,4 +105,15 @@ exports.eliminarSchedule=(req,res,next)=>{
             erro: err
         })
     })
+}
+
+exports.mandarSms=(req,res,next)=>{
+
+   
+      client.messages.create({
+      to:'+258878811900',
+      from:'+13342588698',
+      body:'teste de envio de sms a partir do programa'
+  })
+  res.send("SMS enviada")
 }

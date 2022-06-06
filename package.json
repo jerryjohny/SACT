@@ -13,12 +13,14 @@
   "author": "Germano Kazembe",
   "license": "ISC",
   "dependencies": {
+    "@vonage/server-sdk": "^2.11.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.4",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "twilio": "^3.77.2"
   }
 }
