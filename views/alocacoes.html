@@ -232,21 +232,35 @@
       </section>
 
       <section class="section">
-        <div class="row">
-          <div class="col-lg-12">
-
-            <div class="card" id="areaAlocacão" >
-              <div class="card-body">
-                <h5 class="card-title ">Trabalhadores alocados a actividades </h5>
-                <div>
-                  <h6>Actividade: <span></span></h6>
-                  <h6>Trabalhadores alocados: <span></span></h6>
-                  <h6 class="bi calendar-week">Data inicio: <span></span></h6>
-                  <h6>Data fim: <span></span></h6>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Trabalhadores alocados a actividades</h5>
+            <!-- NOTA: o ID TERA QUE SER DINAMICO PARA QUE AS ACOES NAO ACONTECAOM EM SIMULTANEO -->
+            <!-- Accordion without outline borders -->
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Actividade: Iniciar a fundacao (Data inicio: 12 Junho - 27 de Julho ) - ( 4 trabalhadores alocados)
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample1">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne1">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne1" aria-expanded="false" aria-controls="flush-collapseOne1">
+                        1. Ivan Saitama (expanda para mais detalhes)
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne1" data-bs-parent="#accordionFlushExample1">
+                      <div class="accordion-body">-    Contacto: 841234567</div>
+                      <div class="accordion-body">-   Especialidade: Betao Maker</div>
+                      <div class="accordion-body">-    Experiencia: 2 anos</div>
+                    </div>
+                  </div>
                 </div>
-
               </div>
-            </div>
+              
+            </div><!-- End Accordion without outline borders -->
 
           </div>
         </div>
