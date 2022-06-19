@@ -51,18 +51,19 @@ exports.registarTrabalhador=(req,res,next)=>{
 }
 exports.listarTrabalhadores=(req,res,next)=>{
     trabalhadorModel.find()
-    .select('nome telefone BI especialidade ')
+    .select('_id nome telefone BI especialidade nivel_experiencia')
     .exec()
     .then(doc=>{
         const resposta={
             count: doc.length,
             usr: doc.map(doc=>{
                 return{
-                    id: doc._id,
+                    _id: doc._id,
                     nome: doc.nome,
                     telefone: doc.telefone,
                     BI: doc.BI,
                     especialidade: doc.especialidade,
+                    nivel_experiencia: doc.nivel_experiencia,
                     SPECIFIC_GET_URL: 'http://localhost:3000/trabalhador/'+doc._id
                 }
             })

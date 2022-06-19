@@ -5,10 +5,10 @@ const scheduleModel=mongoose.Schema({
     actividade:  {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
     obra:        {type: mongoose.Schema.Types.ObjectId, ref: 'obras',required: true},
     trabalhador: {type: mongoose.Schema.Types.ObjectId, ref: 'trabalhadores',required: true},
-    inicio:      {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
-    fim:         {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
-    horaInicio:  {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
-    horaFim:     {type: mongoose.Schema.Types.ObjectId, ref: 'actividades',required: true},
+    inicio:      {type: String,required: true},
+    fim:         {type: String,required: true},
+    horaInicio:  {type: String,required: true},
+    horaFim:     {type: String,required: true},
 })
 
 module.exports= mongoose.model('schedules',scheduleModel);

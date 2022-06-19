@@ -39,19 +39,47 @@ exports.registarSchedule=(req,res,next)=>{
 }
 exports.listarSchedules=(req,res,next)=>{
     scheduleModel.find()
-    .select('_id actividade obra trabalhador inicio fim')
-    .populate("actividade obra trabalhador inicio fim"," designacao nome inicio fim ")
+    .select('actividade obra trabalhador inicio fim')
+    .populate("actividade obra trabalhador inicio fim horaInicio horaFim"," designacao designacao nome inicio fim horaInicio horaFim ")
     .exec()
     .then(doc=>{
         const resposta={
             count: doc.length,
             schedule: doc.map(doc=>{
                 return{
-                    actividade:  doc.designacao,
-                    obra:        doc.obra.designacao,
-                    trabalhador: doc.trabalhador.nome,
-                    inicio:      doc.inicio.inicio,
-                    fim:         doc.fim.fim,
+                    actividade:  doc.actividade,
+                    obra:        doc.obra,
+                    trabalhador: doc.trabalhador,
+                    inicio:      doc.inicio,
+                    fim:         doc.fim,
+                    _id:         doc._id,
+                    SPECIFIC_GET_URL: 'http://localhost:3000/schedules/'+doc._id
+                }
+            })
+        }
+       console.log("dabase de dados",doc) ;
+       res.status(200).json(resposta.schedule);
+    })
+    .catch(err=>{ 
+        console.log(err);
+        res.status(500).json({error:err});
+    });
+}
+exports.listarSchedulesPorId=(req,res,next)=>{
+    scheduleModel.find({actividade: req.params.cod_actividade})
+    .select('actividade obra trabalhador inicio fim')
+    .populate("actividade obra trabalhador inicio fim horaInicio horaFim"," designacao designacao nome inicio fim horaInicio horaFim ")
+    .exec()
+    .then(doc=>{
+        const resposta={
+            count: doc.length,
+            schedule: doc.map(doc=>{
+                return{
+                    actividade:  doc.actividade,
+                    obra:        doc.obra,
+                    trabalhador: doc.trabalhador,
+                    inicio:      doc.inicio,
+                    fim:         doc.fim,
                     _id:         doc._id,
                     SPECIFIC_GET_URL: 'http://localhost:3000/schedules/'+doc._id
                 }
