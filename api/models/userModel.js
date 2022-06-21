@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const userModel=mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: String,
-    phone: String,
-    email: {
+    trabalhador:  {type: mongoose.Schema.Types.ObjectId, ref: 'trabalhadores',required: true},
+    obra:         {type: mongoose.Schema.Types.ObjectId, ref: 'obras',required: true},
+    email:{
         type: String,
         required: true,
         unique:true,

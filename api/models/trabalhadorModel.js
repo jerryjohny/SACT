@@ -9,7 +9,7 @@ const trabalhadorModel=mongoose.Schema({
     especialidade:     {type: String, required: true},
     tipo_trabalhador:  {type: String, required: true},
     nivel_experiencia: {type: String, required: true},
-    link_cv:           {type: String, required: true},
+    link_cv:           {type: String, required: true, default:"link default"},
     status:            {type: String, required: true, default:"false"}
 })
 

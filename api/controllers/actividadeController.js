@@ -55,7 +55,7 @@ exports.listarActividades=(req,res,next)=>{
                     _id:           doc._id,
                     horaInicio:    doc.horaInicio,
                     horaFim:       doc.horaFim,
-                    obraAssociada: doc.obraAssociada.designacao,
+                    obraAssociada: doc.obraAssociada,
                     SPECIFIC_GET_URL: 'http://localhost:3000/actividade/'+doc._id
                 }
             })

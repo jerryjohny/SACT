@@ -20,8 +20,8 @@ exports.signup=(req,res,next)=>{
                 }else{
                     const user = new userModel({
                         _id: new mongoose.Types.ObjectId(),
-                        name:     req.body.name,
-                        phone:    req.body.phone,
+                        trabalhador:     req.body.trabalhador,
+                        obra:    req.body.obra,
                         email:    req.body.email,
                         password: hash
                     }); 
@@ -33,8 +33,8 @@ exports.signup=(req,res,next)=>{
                             message: "Novo usuario" ,
                             produto_criado: {
                                 id:    result._id,
-                                name:  result.name,
-                                phone: result.phone,
+                                trabalhador:  result.trabalhador,
+                                obra: result.obra,
                                 email: result.email,
                                 password: result.password,
                                 GET_URL: 'http://localhost:4000/users/'+result._id
@@ -98,7 +98,8 @@ exports.login=(req,res,next)=>{
 
 exports.get_all_users=(req,res,next)=>{
     userModel.find()
-    .select('name phone email password')
+    .select('trabalhador obra email password')
+    .populate("obra trabalhador", "designacao nome")
     .exec()
     .then(doc=>{
         const resposta={
@@ -106,8 +107,8 @@ exports.get_all_users=(req,res,next)=>{
             usr: doc.map(doc=>{
                 return{
                     id: doc._id,
-                    name: doc.name,
-                    phone: doc.phone,
+                    trabalhador: doc.trabalhador,
+                    obra: doc.obra,
                     email: doc.email,
                     password: doc.password,
                     SPECIFIC_GET_URL: 'http://localhost:4000/users/'+doc._id

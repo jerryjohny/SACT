@@ -28,6 +28,15 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <!--scripts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+  integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
 
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.2
@@ -84,7 +93,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100"  type="submit">Entrar <span class="bi bi-box-arrow-in-right"></span></button>
+                      <button class="btn btn-primary w-100" id="btLogin" >Entrar <span class="bi bi-box-arrow-in-right" ></span></button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Ainda nao tem uma conta? <a href="registar.html">Criar conta</a></p>
@@ -116,7 +125,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+ 
+  <script src="connection.js"></script>
 </body>
 
 </html>

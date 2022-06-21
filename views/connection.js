@@ -1,10 +1,12 @@
 
+
 var obras= new Array;
 var obraas= new Array;
 var actividades= new Array;
 var trbalhadorees= new Array;
 var schedules= new Array;
 var listaDeSchedulesPorId = new Array;
+var codActualParaSchedule;
 function regTrabalhador(){
 
     var nomeTrabalhador=        document.getElementById("inputNome").value
@@ -40,7 +42,6 @@ function carregarTotalTrabalhadores(){
         trbalhadorees=a;//paraser usada na
        $("#totalTrabalhadores").text(a.length)
     })
-    
 }
 function carregarObras(){ 
 
@@ -193,10 +194,58 @@ function carregarActividadesParaAfetacao(){
         a.forEach(element => {
              tupla= `<option>${element.designacao}</option>`
             $("#listaActividades").append(tupla)
+            $("#listaActividadeRelatorio").append(tupla)
         });
+        
       
     })
     
+}
+function carregarSc(){
+
+    axios.get("http://localhost:3000/actividade/listar")
+    .then(res=>{
+        var codigoActual
+        var contador=-1;
+        var a = res.data
+        actividades=a;
+        var listaActividades =        document.getElementById("listaActividadeRelatorio")
+        var conteudoLista =          listaActividades.options[listaActividades.selectedIndex].index;
+       
+        a.forEach(element => {
+            contador++
+            if (contador==conteudoLista) {
+                $("#tituloActividade").text(element.designacao)
+                codigoActual=element._id
+                codActualParaSchedule=codigoActual;
+                axios.get(`http://localhost:3000/schedule/listarPorId/${codigoActual}`,{
+                    params: {
+                        cod_actividade: codigoActual
+                    }
+                })
+                .then(res=>{
+                 
+                    $("#infoSchedules").text("Duração: "+element.inicio+" - "+element.fim+" \n - \n("+listaDeSchedulesPorId.length+" \ntrabalhadores alocados)\n"+ "  Obra :"+ element.obraAssociada.designacao)
+               
+                    var b = res.data
+                    listaDeSchedulesPorId=b;
+                    schedules=b;
+                   
+                })
+            }
+
+        });
+      
+    })
+    $("#nomesDeTrabalhadores").text("")
+       for (let i = 0; i < listaDeSchedulesPorId.length; i++) {
+            if(listaDeSchedulesPorId[i]._id=codActualParaSchedule){
+                var tupla=`<p id="infoSchedules"> ${i+1}.\n ${listaDeSchedulesPorId[i].trabalhador.nome}</p>`
+               
+                $("#nomesDeTrabalhadores").append(tupla);
+            }
+        }
+   
 }
 function carregarDetalhesDaActividadeParaAlocacao(){ 
 
@@ -207,17 +256,11 @@ function carregarDetalhesDaActividadeParaAlocacao(){
         actividades=a;
         var listaActividades =        document.getElementById("listaActividades")
         var conteudoLista =          listaActividades.options[listaActividades.selectedIndex].index;
-       
 
-
-        for (let contador = 0; contador < a.length; contador++) {
-            
-            
-        }
         a.forEach(element => {
             contador++
             if (contador==conteudoLista) {
-                $("#obraAssociada").val(a[contador].obraAssociada) 
+                $("#obraAssociada").val(a[contador].obraAssociada.designacao) 
                 $("#dataInicioAfetacao").val(a[contador].inicio)
                 $("#horaInicioAfetacao").val(a[contador].horaInicio)
                 $("#dataFimAfetacao").val(a[contador].fim)
@@ -226,6 +269,7 @@ function carregarDetalhesDaActividadeParaAlocacao(){
         });
       
     })
+
     
 }
 function carregarTotalCanalizadores(){ 
@@ -292,19 +336,23 @@ function regSchedule(){
     // var todasObras=carregarObrasParaRegistoDeActividade();
      var listaActividades =        document.getElementById("listaActividades")
      var conteudoActividades =          listaActividades.options[listaActividades.selectedIndex].index;
+     var listaTrabalhadores =     document.getElementById("listaTrabalhaores")
+     var conteudoTrabalhadores =  listaTrabalhaores.options[listaTrabalhadores.selectedIndex].index;
      var codigoActividade;
      var contador=-1;
-    
-     obras.forEach(element => {
+     alert(actividades.length)
+     actividades.forEach(element => {
+        
          contador++
          if (contador==conteudoActividades) {
              codigoActividade=actividades[contador]._id
-           alert(actividades[contador].horaInicio)
+           //alert(obraas[contador].designacao)
+           alert(actividades[contador].obraAssociada._id)
          axios.post("http://localhost:3000/schedule/registar/",  {
          
                 actividade:    actividades[contador]._id,
-                obra:          obraas[contador]._id,
-                trabalhador:   trbalhadorees[contador]._id,
+                obra:          actividades[contador].obraAssociada._id,
+                trabalhador:   trbalhadorees[conteudoTrabalhadores]._id,
                 inicio:        actividades[contador].inicio,
                 fim:           actividades[contador].fim,
                 horaInicio:    actividades[contador].horaInicio,
@@ -321,7 +369,6 @@ function regSchedule(){
  }
 
 //btRegActividade
-
 
 
 
@@ -343,35 +390,36 @@ $("#filtroCanalizador").on("click",function(){
 
   carregarTotalCanalizadores()
 })
-
- 
 $("#listaTrabalhaores").click(function(){
-  
     carregarDetalhesDoTrabalhadorParaAlocacao();
 })
 $("#listaActividades").click(function(){// O select de actividades perde o foco (que significa que ja foi seleccionada a actividade), carrega-se os detalhes da actividade
     
     carregarDetalhesDaActividadeParaAlocacao()
 })
-
 $("#btAlocar").click(function(){
   
     regSchedule();
 })
+$("#accordionFlushExample").mouseover(function(){
+    //carregarSc();
+})
 
-$("#listaSchedules").click(function(){
-    alert(this.innerText)
+$("body").mouseover(function(){
+    
+    carregarSc();
+ })
+$("#btLogin").click(function(){
+
+    window.location.href='operador.html'
 })
 
   
 
 $(function(){
-    carregarSchedulePorId();
     carregarTotalTrabalhadoresParaAfetacao()
     carregarTotalTrabalhadores();
     carregarObrasParaRegistoDeActividade();
     carregarActividadesParaAfetacao();
     carregarObras();
-    carregarScedules();
-    alert(obras.length)
 });
