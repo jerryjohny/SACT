@@ -108,7 +108,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" >
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -121,23 +121,23 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="alocacoes.html" class="">
+            <a class="">
               <i class="bi bi-circle"></i><span>Alocacoes</span>
             </a>
           </li>
           <li>
-            <a href="Admin.html" class="">
+            <a class="">
               <i class="bi bi-circle"></i><span>Trabalhador</span>
             </a>
           </li>
           <li>
-            <a href="Admin.html">
+            <a>
               <i class="bi bi-circle"></i><span>Obra</span>
             </a>
           </li>
 
           <li>
-            <a href="Admin.html" class="">
+            <a class="">
               <i class="bi bi-circle"></i><span>Actividade</span>
             </a>
           </li>
@@ -159,14 +159,14 @@
 
 
             <div class="card-body">
-              <h5 class="card-title">Trabalhadores <span>| Hoje</span></h5>
+              <h5 class="card-title" >Trabalhadores <span>| Hoje</span></h5>
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                   <i class="bi bi-people"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>24</h6>
+                  <h6 id="cardTitle">24</h6>
                 </div>
               </div>
 
@@ -188,9 +188,9 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Controle de presenca</h5>
-            <h6>(NOME DA OBRA EM QUESTAO)</h6>
+            <h6 id="obraEmCausa">(NOME DA OBRA EM QUESTAO)</h6>
 
-            <table class="table">
+            <table class="table" id="tabelaPresencas">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -200,21 +200,14 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
+                  <th scope="row">0</th>
                   <td>Claudio Mandende</td>
                   <td>
                     <a class="btn btn-success bi bi-camera-fill btn-sm" id="click-photo"></a>
-                    <canvas id="canvas" width="130px" height="120px" ></canvas>
+                    <canvas id="canvas"  width="30px" height="30px" ></canvas>
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Zack Synder</td>
-                  <td>
-                    <a class="btn btn-success bi bi-camera-fill btn-sm" id="click-photo"></a>
-                    <canvas id="canvas" width="30" height="30" ></canvas>
-                  </td>
-                </tr>
+              
               </tbody>
             </table>
           </div>
@@ -264,7 +257,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="connection.js"></script>
+  <script type="text/javascript" src="auth.js"></script>
 </body>
 
 </html>

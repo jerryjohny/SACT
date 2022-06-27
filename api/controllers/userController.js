@@ -23,7 +23,8 @@ exports.signup=(req,res,next)=>{
                         trabalhador:     req.body.trabalhador,
                         obra:    req.body.obra,
                         email:    req.body.email,
-                        password: hash
+                       // password: hash
+                       password: req.body.password
                     }); 
                     user
                     .save()
@@ -99,7 +100,7 @@ exports.login=(req,res,next)=>{
 exports.get_all_users=(req,res,next)=>{
     userModel.find()
     .select('trabalhador obra email password')
-    .populate("obra trabalhador", "designacao nome")
+    .populate("obra trabalhador", "designacao nome especialidade")
     .exec()
     .then(doc=>{
         const resposta={

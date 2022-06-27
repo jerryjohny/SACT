@@ -7,6 +7,10 @@ var trbalhadorees= new Array;
 var schedules= new Array;
 var listaDeSchedulesPorId = new Array;
 var codActualParaSchedule;
+var indiceanteriorActividadeSchedule = -1;
+
+
+
 function regTrabalhador(){
 
     var nomeTrabalhador=        document.getElementById("inputNome").value
@@ -197,6 +201,8 @@ function carregarActividadesParaAfetacao(){
             $("#listaActividadeRelatorio").append(tupla)
         });
         
+      //  $("#listaActividadeRelatorio").selectedIndex=1 
+        
       
     })
     
@@ -211,40 +217,44 @@ function carregarSc(){
         actividades=a;
         var listaActividades =        document.getElementById("listaActividadeRelatorio")
         var conteudoLista =          listaActividades.options[listaActividades.selectedIndex].index;
-       
-        a.forEach(element => {
-            contador++
-            if (contador==conteudoLista) {
-                $("#tituloActividade").text(element.designacao)
-                codigoActual=element._id
-                codActualParaSchedule=codigoActual;
-                axios.get(`http://localhost:3000/schedule/listarPorId/${codigoActual}`,{
-                    params: {
-                        cod_actividade: codigoActual
+       // if(conteudoLista!=indiceanteriorActividadeSchedule){ //só executa se o indice actial for diferente do indice anterior
+            
+                a.forEach(element => {
+                    contador++
+                    if (contador==conteudoLista) {
+                        $("#tituloActividade").text(element.designacao)
+                        codigoActual=element._id
+                        codActualParaSchedule=codigoActual;
+                        axios.get(`http://localhost:3000/schedule/listarPorId/${codigoActual}`,{
+                            params: {
+                                cod_actividade: codigoActual
+                            }
+                        })
+                        .then(res=>{
+                        
+                            $("#infoSchedules").text("Duração: "+element.inicio+" - "+element.fim+" \n - \n("+listaDeSchedulesPorId.length+" \ntrabalhadores alocados)\n"+ "  Obra :"+ element.obraAssociada.designacao)
+                    
+                            var b = res.data
+                            listaDeSchedulesPorId=b;
+                            schedules=b;
+                        
+                        })
                     }
-                })
-                .then(res=>{
-                 
-                    $("#infoSchedules").text("Duração: "+element.inicio+" - "+element.fim+" \n - \n("+listaDeSchedulesPorId.length+" \ntrabalhadores alocados)\n"+ "  Obra :"+ element.obraAssociada.designacao)
-               
-                    var b = res.data
-                    listaDeSchedulesPorId=b;
-                    schedules=b;
-                   
-                })
-            }
 
-        });
-      
-    })
-    $("#nomesDeTrabalhadores").text("")
-       for (let i = 0; i < listaDeSchedulesPorId.length; i++) {
+                });
+        
+        indiceanteriorActividadeSchedule=conteudoLista
+        $("#nomesDeTrabalhadores").text("")
+        for (let i = 0; i < listaDeSchedulesPorId.length; i++) {
             if(listaDeSchedulesPorId[i]._id=codActualParaSchedule){
                 var tupla=`<p id="infoSchedules"> ${i+1}.\n ${listaDeSchedulesPorId[i].trabalhador.nome}</p>`
-               
+                   
                 $("#nomesDeTrabalhadores").append(tupla);
             }
         }
+    //}
+    })
+   
    
 }
 function carregarDetalhesDaActividadeParaAlocacao(){ 
@@ -368,8 +378,7 @@ function regSchedule(){
     
  }
 
-//btRegActividade
-
+//others
 
 
 $("#btRegistarTrabalhador").on("click",function(){
@@ -409,17 +418,14 @@ $("body").mouseover(function(){
     
     carregarSc();
  })
-$("#btLogin").click(function(){
-
-    window.location.href='operador.html'
-})
-
-  
 
 $(function(){
+    var  usuario=localStorage.getItem("USUARIO")
+    alert("Bem vindo "+usuario)
     carregarTotalTrabalhadoresParaAfetacao()
     carregarTotalTrabalhadores();
     carregarObrasParaRegistoDeActividade();
     carregarActividadesParaAfetacao();
     carregarObras();
+
 });
